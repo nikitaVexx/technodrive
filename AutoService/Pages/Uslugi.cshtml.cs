@@ -6,18 +6,18 @@ namespace AutoService.Pages
 {
     public class UslugiModel : PageModel
     {
-        private readonly Database _базаДанных;
+        private readonly Database _database;
 
         public List<Usluga> Услуги { get; set; } = new();
 
         public UslugiModel()
         {
-            _базаДанных = new Database();
+            _database = new Database();
         }
 
         public void OnGet()
         {
-            Услуги = _базаДанных.GetServices();
+            Услуги = _database.GetServices();
         }
     }
 }
