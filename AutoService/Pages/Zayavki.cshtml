@@ -1,0 +1,97 @@
+﻿@page
+@model AutoService.Pages.ZayavkiModel
+
+@{
+    ViewData["Title"] = "Заявки";
+}
+
+<div class="container pt-4 pb-5">
+    <section class="requests-header">
+        <span class="requests-label">ТЕХНОДРАЙВ / УПРАВЛЕНИЕ</span>
+        <h1>Заявки клиентов</h1>
+        <p>Список заявок на обслуживание автомобилей.</p>
+        <form method="post" action="/AdminLogin?handler=Logout" class="admin-logout-form">
+            <button type="submit" class="btn btn-outline-primary btn-sm">Выйти из панели</button>
+        </form>
+    </section>
+
+    <div class="row g-3 mb-4">
+        <div class="col-md-4"><div class="request-stat-card">
+            <span class="request-stat-label">Всего заявок</span>
+            <strong class="request-stat-value">@Model.ВсегоЗаявок</strong>
+            <span class="request-stat-description">Все заявки в базе данных</span>
+        </div></div>
+        <div class="col-md-4"><div class="request-stat-card">
+            <span class="request-stat-label">За сегодня</span>
+            <strong class="request-stat-value">@Model.ЗаявокСегодня</strong>
+            <span class="request-stat-description">Заявки за текущий день</span>
+        </div></div>
+        <div class="col-md-4"><div class="request-stat-card">
+            <span class="request-stat-label">Услуги автосервиса</span>
+            <strong class="request-stat-value">@Model.КоличествоУслуг</strong>
+            <span class="request-stat-description">Услуги в каталоге</span>
+        </div></div>
+    </div>
+
+    <div class="requests-summary">
+        <h2>Все заявки</h2>
+        <span>Найдено: @Model.Заявки.Count</span>
+    </div>
+
+    <form method="get" class="requests-search">
+        <div class="requests-search-field">
+            <input type="text" name="search" value="@Model.Search"
+                   class="form-control" placeholder="Имя клиента или номер телефона..." />
+            <button type="submit" class="btn btn-primary">Найти</button>
+        </div>
+        @if (!string.IsNullOrWhiteSpace(Model.Search))
+        {
+            <a href="/Zayavki" class="requests-reset">Сбросить поиск</a>
+        }
+    </form>
+
+    @if (Model.Заявки.Count == 0)
+    {
+        <div class="requests-empty">
+            <h3>Заявки не найдены</h3>
+            <p>Попробуйте изменить поисковый запрос.</p>
+        </div>
+    }
+    else
+    {
+        <div class="requests-table-wrapper">
+            <table class="requests-table">
+                <thead><tr>
+                    <th>№</th><th>Клиент</th><th>Телефон</th><th>Услуга</th>
+                    <th>Описание проблемы</th><th>Дата заявки</th>
+                    <th>Дата обслуживания</th><th>Время</th><th>Статус</th><th>Действия</th>
+                </tr></thead>
+                <tbody>
+                @foreach (var заявка in Model.Заявки)
+                {
+                    <tr>
+                        <td>@заявка.Идентификатор</td>
+                        <td class="request-client">@заявка.ИмяКлиента</td>
+                        <td>@заявка.Телефон</td>
+                        <td>@заявка.НазваниеУслуги</td>
+                        <td class="request-description">@заявка.ОписаниеПроблемы</td>
+                        <td>@заявка.ДатаЗаявки</td>
+                        <td>@(string.IsNullOrWhiteSpace(заявка.ДатаОбслуживания) ? "Не назначена" : заявка.ДатаОбслуживания)</td>
+                        <td>@(string.IsNullOrWhiteSpace(заявка.ВремяОбслуживания) ? "—" : заявка.ВремяОбслуживания)</td>
+                        <td><span class="badge bg-info text-dark">@заявка.Статус</span></td>
+                        <td>
+                            <form method="post" asp-page-handler="Delete"
+                                  onsubmit="return confirm('Вы действительно хотите удалить эту заявку?');">
+                                <input type="hidden" name="идентификатор" value="@заявка.Идентификатор" />
+                                <button type="submit" class="btn btn-danger btn-sm">Удалить</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    }
+
+    <a href="/Index" class="btn btn-outline-primary mt-4">Вернуться на главную</a>
+</div>

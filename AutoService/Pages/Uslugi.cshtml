@@ -1,0 +1,78 @@
+@page
+@model AutoService.Pages.UslugiModel
+
+@{
+    ViewData["Title"] = "Услуги";
+}
+
+<div class="container pt-4 pb-5">
+    <section class="services-hero">
+        <span class="services-label">ТЕХНОДРАЙВ / НАШИ УСЛУГИ</span>
+        <h1>Услуги автосервиса</h1>
+        <p>
+            Диагностика, техническое обслуживание и ремонт автомобилей.
+            Выберите подходящую услугу и оставьте заявку.
+        </p>
+        <a href="/Index#zayavka" class="btn btn-primary mt-2">
+            Записаться на обслуживание
+        </a>
+    </section>
+
+    <div class="services-page-heading">
+        <h2>Что мы предлагаем</h2>
+        <span>@Model.Услуги.Count услуг</span>
+    </div>
+
+    <div class="row g-4">
+        @foreach (var услуга in Model.Услуги)
+        {
+            <div class="col-md-6 col-lg-4">
+                <article class="service-card h-100">
+                    <div class="service-card-body">
+                        <div class="service-card-top">
+                            <span class="service-number">
+                                № @услуга.Идентификатор.ToString("00")
+                            </span>
+                        </div>
+
+                        <h3>@услуга.Название</h3>
+
+                        <p class="service-description">
+                            @услуга.Описание
+                        </p>
+
+                        <div class="service-card-bottom">
+                            <div class="service-price">
+                                <span>Стоимость от</span>
+                                <strong>@услуга.Стоимость.ToString("N0") ₽</strong>
+                            </div>
+
+                            <a href="/Index#zayavka"
+                               class="btn btn-outline-primary service-button">
+                                Записаться
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        }
+    </div>
+
+    @if (Model.Услуги.Count == 0)
+    {
+        <div class="services-empty">
+            <h3>Пока нет доступных услуг</h3>
+            <p>Попробуйте зайти на страницу позже.</p>
+        </div>
+    }
+
+    <section class="services-contact">
+        <div>
+            <h2>Нужна помощь с выбором?</h2>
+            <p>Оставьте заявку, и мы уточним детали обслуживания.</p>
+        </div>
+        <a href="/Index#zayavka" class="btn btn-primary">
+            Оставить заявку
+        </a>
+    </section>
+</div>

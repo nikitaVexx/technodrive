@@ -1,0 +1,286 @@
+﻿@page
+@model AutoService.Pages.IndexModel
+
+@{
+    ViewData["Title"] = "Главная";
+    var сообщениеУспеха = TempData["СообщениеУспеха"] as string;
+}
+
+<div class="container pt-3 pb-5">
+
+    <div class="hero-section rounded-3 mb-4">
+        <div class="hero-content">
+            <h1 class="display-4 fw-bold">Автосервис «ТехноДрайв»</h1>
+
+            <p class="fs-4 mt-3">
+                Ремонт и обслуживание автомобилей
+            </p>
+
+            <p class="lead">
+                Профессиональная диагностика, качественный ремонт
+                и забота о вашем автомобиле.
+            </p>
+
+            <a href="/Uslugi" class="btn btn-primary btn-lg mt-3">
+                Наши услуги
+            </a>
+
+            <a href="#zayavka" class="btn btn-success btn-lg mt-3">
+                Оставить заявку
+            </a>
+        </div>
+    </div>
+
+    <div class="services-heading">
+        <h2>Наши услуги</h2>
+        <a href="/Uslugi">Все услуги →</a>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Диагностика автомобиля</h5>
+                    <p class="card-text">
+                        Проверка основных систем автомобиля
+                        для выявления неисправностей.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Замена масла</h5>
+                    <p class="card-text">
+                        Замена моторного масла и фильтров
+                        для надёжной работы двигателя.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Ремонт автомобиля</h5>
+                    <p class="card-text">
+                        Поиск и устранение неисправностей,
+                        техническое обслуживание автомобиля.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="advantages-section">
+        <div class="advantages-heading">
+            <span class="advantages-label">НАШИ ПРЕИМУЩЕСТВА</span>
+
+            <h2>Почему выбирают ТехноДрайв?</h2>
+
+            <p>
+                Внимательно относимся к автомобилю и помогаем
+                подобрать подходящее обслуживание.
+            </p>
+        </div>
+
+        <div class="advantages-grid">
+
+            <article class="advantage-card">
+                <div class="advantage-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="10.5" cy="10.5" r="6.5" />
+                        <path d="m15.5 15.5 5 5" />
+                        <path d="m8 10.5 2 2 3.5-4" />
+                    </svg>
+                </div>
+
+                <h3>Точная диагностика</h3>
+                <p>
+                    Помогаем выявить возможные неисправности
+                    и определить необходимые работы.
+                </p>
+            </article>
+
+            <article class="advantage-card">
+                <div class="advantage-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <rect x="5" y="4" width="14" height="17" rx="2" />
+                        <path d="M9 4.5h6a1.5 1.5 0 0 0-1.5-1.5h-3A1.5 1.5 0 0 0 9 4.5Z" />
+                        <path d="m8.5 13 2.2 2.2 4.8-4.8" />
+                    </svg>
+                </div>
+
+                <h3>Внимание к деталям</h3>
+                <p>
+                    Учитываем состояние автомобиля и особенности
+                    необходимых ремонтных работ.
+                </p>
+            </article>
+
+            <article class="advantage-card">
+                <div class="advantage-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 3 20 6v5c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6Z" />
+                        <path d="m8.5 12 2.5 2.5 5-5" />
+                    </svg>
+                </div>
+
+                <h3>Понятная стоимость</h3>
+                <p>
+                    Можно заранее ознакомиться с ценами услуг
+                    и обсудить необходимые работы.
+                </p>
+            </article>
+
+            <article class="advantage-card">
+                <div class="advantage-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <rect x="3" y="5" width="18" height="16" rx="2" />
+                        <path d="M16 3v4M8 3v4M3 10h18" />
+                        <path d="m9 15 2 2 4-4" />
+                    </svg>
+                </div>
+
+                <h3>Удобная запись</h3>
+                <p>
+                    Оставьте заявку на сайте, чтобы обсудить
+                    обслуживание вашего автомобиля.
+                </p>
+            </article>
+
+        </div>
+    </section>
+
+    <div id="zayavka" class="mt-5 p-4 border rounded">
+        <h2 class="text-center mb-4">Запись на обслуживание</h2>
+
+        <form method="post">
+
+            @if (!string.IsNullOrEmpty(сообщениеУспеха))
+            {
+                <div class="alert alert-success">
+                    @сообщениеУспеха
+                </div>
+            }
+
+            @if (!string.IsNullOrEmpty(Model.Сообщение))
+            {
+                <div class="alert alert-danger">
+                    @Model.Сообщение
+                </div>
+            }
+
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label for="ИмяКлиента" class="form-label">
+                        Ваше имя
+                    </label>
+
+                    <input id="ИмяКлиента"
+                           name="ИмяКлиента"
+                           class="form-control"
+                           required />
+                </div>
+
+                <div class="col-md-6">
+                    <label for="ИдентификаторУслуги" class="form-label">
+                        Выберите услугу
+                    </label>
+
+                    <select id="ИдентификаторУслуги"
+                            name="ИдентификаторУслуги"
+                            class="form-select"
+                            required>
+                        <option value="">Выберите услугу</option>
+
+                        @foreach (var услуга in Model.Услуги)
+                        {
+                            <option value="@услуга.Идентификатор">
+                                @услуга.Название — @услуга.Стоимость.ToString("N0") ₽
+                            </option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div class="row g-3 mt-1">
+                <div class="col-md-6">
+                    <label for="Телефон" class="form-label">
+                        Номер телефона
+                    </label>
+
+                    <input id="Телефон"
+                           name="Телефон"
+                           class="form-control"
+                           type="tel"
+                           required />
+                </div>
+
+                <div class="col-md-6">
+                    <label for="ДатаОбслуживания" class="form-label">Дата обслуживания</label>
+                    <input id="ДатаОбслуживания"
+                           name="ДатаОбслуживания"
+                           type="date"
+                           min="@DateTime.Today.ToString("yyyy-MM-dd")"
+                           class="form-control"
+                           required />
+                </div>
+
+                <div class="col-md-6">
+                    <label for="ВремяОбслуживания" class="form-label">Время обслуживания</label>
+                    <select id="ВремяОбслуживания"
+                            name="ВремяОбслуживания"
+                            class="form-select"
+                            required>
+                        <option value="">Выберите время</option>
+                        @foreach (var время in Model.ВремяЗаписи)
+                        {
+                            <option value="@время">@время</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="ОписаниеПроблемы" class="form-label">
+                        Опишите проблему или пожелания
+                    </label>
+
+                    <textarea id="ОписаниеПроблемы"
+                              name="ОписаниеПроблемы"
+                              class="form-control"
+                              rows="3"
+                              required></textarea>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-success mt-3">
+                Отправить заявку
+            </button>
+        </form>
+    </div>
+</div>
+
+<script>
+    const полеОписания = document.getElementById('ОписаниеПроблемы');
+
+    if (полеОписания) {
+        полеОписания.style.resize = 'none';
+        полеОписания.style.overflowY = 'hidden';
+
+        function изменитьВысотуПоля() {
+            полеОписания.style.height = 'auto';
+            полеОписания.style.height =
+                полеОписания.scrollHeight + 'px';
+        }
+
+        полеОписания.addEventListener(
+            'input',
+            изменитьВысотуПоля
+        );
+
+        изменитьВысотуПоля();
+    }
+</script>

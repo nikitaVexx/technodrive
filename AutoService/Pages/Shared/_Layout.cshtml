@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] — ТехноДрайв</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/AutoService.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg td-navbar">
+            <div class="container">
+                <a class="navbar-brand td-brand" asp-area="" asp-page="/Index">
+                    <span class="td-brand-text">
+                        <strong>ТехноДрайв</strong>
+                        <small>Автосервис нового поколения</small>
+                    </span>
+                </a>
+
+                <button class="navbar-toggler td-toggler" type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#tdNavbar"
+                        aria-controls="tdNavbar"
+                        aria-expanded="false"
+                        aria-label="Открыть меню">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="tdNavbar">
+                    <ul class="navbar-nav ms-auto align-items-lg-center">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-page="/Index">
+                                Главная
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-page="/Uslugi">
+                                Услуги
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Index#zayavka">
+                                Запись на обслуживание
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-page="/TrackRequest">Моя заявка</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link td-admin-link" asp-area="" asp-page="/AdminLogin">
+                                Для администратора
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="td-header-contact ms-lg-4">
+                        <a class="td-phone" href="tel:+79621917955">
+                            +7 (962) 191-79-55
+                        </a>
+                        <span>Позвоните нам</span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main role="main">
+        @RenderBody()
+    </main>
+
+    <footer class="site-footer td-footer">
+        <div class="container">
+            <div class="td-footer-grid">
+                <div class="footer-brand">
+                    <a class="td-footer-brand" asp-area="" asp-page="/Index">
+                            <span class="td-brand-text">
+                            <strong>ТехноДрайв</strong>
+                            <small>Надёжность в каждой детали</small>
+                        </span>
+                    </a>
+
+                    <p>
+                        Диагностика, ремонт и техническое обслуживание
+                        автомобилей. Помогаем поддерживать ваш автомобиль
+                        в отличном состоянии.
+                    </p>
+                </div>
+
+                <div class="td-footer-column">
+                    <h5>Навигация</h5>
+                    <a asp-area="" asp-page="/Index">Главная</a>
+                    <a asp-area="" asp-page="/Uslugi">Наши услуги</a>
+                    <a href="/Index#zayavka">Оставить заявку</a>
+                </div>
+
+                <div class="td-footer-column">
+                    <h5>Контакты</h5>
+                    <a class="td-footer-phone" href="tel:+79621917955">
+                        +7 (962) 191-79-55
+                    </a>
+                    <p>
+                        <strong>Адрес:</strong><br />
+                        Коммунистическая 21
+                    </p>
+                    <p>
+                        <strong>График работы:</strong><br />
+                        Пн–Сб: 09:00–20:00<br />
+                        Вс: 10:00–17:00
+                    </p>
+                </div>
+            </div>
+
+            <div class="footer-bottom td-footer-bottom">
+                <span>
+                    &copy; @DateTime.Now.Year ТехноДрайв
+                </span>
+                <span>
+                    Все права защищены
+                </span>
+                <a href="tel:+79621917955">Связаться с нами</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,28 @@
+﻿@page
+@model AutoService.Pages.AdminLoginModel
+@{
+    ViewData["Title"] = "Вход администратора";
+}
+<div class="container pt-5 pb-5">
+    <div class="admin-login-card">
+        <span class="requests-label">ТЕХНОДРАЙВ / ЗАЩИЩЁННЫЙ ДОСТУП</span>
+        <h1>Вход администратора</h1>
+        <p>Введите учётные данные, чтобы открыть список заявок клиентов.</p>
+        @if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
+        {
+            <div class="alert alert-danger">@Model.ErrorMessage</div>
+        }
+        <form method="post">
+            <div class="mb-3">
+                <label asp-for="Username" class="form-label">Логин</label>
+                <input asp-for="Username" class="form-control" autocomplete="username" required />
+            </div>
+            <div class="mb-4">
+                <label asp-for="Password" class="form-label">Пароль</label>
+                <input asp-for="Password" type="password" class="form-control" autocomplete="current-password" required />
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Войти</button>
+        </form>
+        <a href="/" class="admin-login-back">Вернуться на главную</a>
+    </div>
+</div>
